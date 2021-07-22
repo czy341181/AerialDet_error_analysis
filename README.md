@@ -33,7 +33,7 @@ this is for 2D rotation object detection of DOTA dataset
 <img src="result/summary.png" alt="vis" width="375" />    
 
 
-![detected_results](result/33_out.tif)
+![detected_results]("result/33_out.tif")
 
 
 
