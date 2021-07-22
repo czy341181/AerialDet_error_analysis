@@ -32,7 +32,9 @@ this is for 2D rotation object detection of DOTA dataset
 ## visual
 <img src="result/summary.png" alt="vis" width="375" />    
 
-<img src="result/33_out.tif" alt="vis" width="375" />
+
+![detected_results](result/33_out.tif)
+
 
 
 
