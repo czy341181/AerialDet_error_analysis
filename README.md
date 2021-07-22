@@ -30,7 +30,7 @@ this is for 2D rotation object detection of DOTA dataset
 
 
 ## visual
-<img src="result/summary.png" alt="vis" style="zoom:50%;" />
+<img src="result/summary.png" alt="vis" width="375" />
 
 
 

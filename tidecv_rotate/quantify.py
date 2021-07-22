@@ -265,6 +265,7 @@ class TIDERun:
                     # There is no ground truth for this image, so just mark everything as BackgroundError
                     self._add_error(BackgroundError(pred))
                     pred_error['error'] = 'bkg'
+                    self.pred_error.append(pred_error)
                     continue
 
                 # Test for BoxError
@@ -273,6 +274,7 @@ class TIDERun:
                     # This detection would have been positive if it had higher IoU with this GT
                     self._add_error(BoxError(pred, ex.gt[idx], ex))
                     pred_error['error'] = 'loc'
+                    self.pred_error.append(pred_error)
                     continue
 
                 # Test for ClassError
@@ -281,6 +283,7 @@ class TIDERun:
                     # This detection would have been a positive if it was the correct class
                     self._add_error(ClassError(pred, ex.gt[idx], ex))
                     pred_error['error'] = 'cls'
+                    self.pred_error.append(pred_error)
                     continue
 
                 # Test for DuplicateError
@@ -290,6 +293,7 @@ class TIDERun:
                     suppressor = self.preds.annotations[ex.gt[idx]['matched_with']]
                     self._add_error(DuplicateError(pred, suppressor))
                     pred_error['error'] = 'dup'
+                    self.pred_error.append(pred_error)
                     continue
 
                 # Test for BackgroundError
@@ -298,6 +302,7 @@ class TIDERun:
                     # This should have been marked as background
                     self._add_error(BackgroundError(pred))
                     pred_error['error'] = 'bkg'
+                    self.pred_error.append(pred_error)
                     continue
 
                 # A base case to catch uncaught errors
@@ -455,12 +460,12 @@ class TIDERun:
 
 class TIDE:
     """
-	████████╗██╗██████╗ ███████╗
-	╚══██╔══╝██║██╔══██╗██╔════╝
-	   ██║   ██║██║  ██║█████╗
-	   ██║   ██║██║  ██║██╔══╝
-	   ██║   ██║██████╔╝███████╗
-	   ╚═╝   ╚═╝╚═════╝ ╚══════╝
+    ████████╗██╗██████╗ ███████╗
+    ╚══██╔══╝██║██╔══██╗██╔════╝
+       ██║   ██║██║  ██║█████╗
+       ██║   ██║██║  ██║██╔══╝
+       ██║   ██║██████╔╝███████╗
+       ╚═╝   ╚═╝╚═════╝ ╚══════╝
    """
 
     # This is just here to define a consistent order of the error types
@@ -521,9 +526,9 @@ class TIDE:
 
     def add_qualifiers(self, *quals):
         """
-		Applies any number of Qualifier objects to evaluations that have been run up to now.
-		See qualifiers.py for examples.
-		"""
+        Applies any number of Qualifier objects to evaluations that have been run up to now.
+        See qualifiers.py for examples.
+        """
         raise NotImplementedError('Qualifiers coming soon.')
 
     # for q in quals:
@@ -612,9 +617,9 @@ class TIDE:
 
     def plot(self, out_dir: str = None):
         """
-		Plots a summary model for each run in this TIDE object.
-		Images will be outputted to out_dir, which will be created if it doesn't exist.
-		"""
+        Plots a summary model for each run in this TIDE object.
+        Images will be outputted to out_dir, which will be created if it doesn't exist.
+        """
 
         if out_dir is not None:
             if not os.path.exists(out_dir):
@@ -666,11 +671,11 @@ class TIDE:
 
     def get_all_errors(self):
         """
-		returns {
-			'main'   : { run_name: { error_name: float } },
-			'special': { run_name: { error_name: float } },
-		}
-		"""
+        returns {
+            'main'   : { run_name: { error_name: float } },
+            'special': { run_name: { error_name: float } },
+        }
+        """
         return {
             'main': self.get_main_errors(),
             'special': self.get_special_errors()
