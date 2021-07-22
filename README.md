@@ -12,7 +12,7 @@ This code is modyfied by tide, which extends to the rotation object detection.
 
 Install some common dependency libraries, such as cv2   
  
-###Install DOTA_devkit
+### Install DOTA_devkit
     sudo apt-get install swig  
     cd DOTA_devkit  
     swig -c++ -python polyiou.i  
@@ -32,7 +32,7 @@ this is for 2D rotation object detection of DOTA dataset
 ## visual
 <img src="result/summary.png" alt="vis" width="375" />    
 
-<img src="result/33_out.tif" alt="vis" width="500" />
+<img src="result/33_out.tif" alt="vis" width="375" />
 
 
 
